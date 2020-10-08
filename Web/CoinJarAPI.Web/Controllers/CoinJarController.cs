@@ -1,4 +1,7 @@
+using System;
 using CoinJarAPI.BusinessLayer;
+using CoinJarAPI.BusinessLayer.Extensions;
+using CoinJarAPI.Web.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CoinJarAPI.Web.Controllers
@@ -38,19 +41,39 @@ namespace CoinJarAPI.Web.Controllers
         /// <summary>
         /// Adds a coin to the jar.
         /// </summary>
-        /// <param name="coin"></param>
+        /// <param name="coinRequest"></param>
         /// <returns></returns>
-        [HttpPost("add/{coin}")]
-        public IActionResult AddCoin(string coin)
+        [HttpPost("add")]
+        public IActionResult AddCoin(AddCoinRequest coinRequest)
         {
-            if (coin == "1")
+            var coin = CastCoinTypeToCoin(coinRequest.CoinType);
+            if (coin != null)
             {
-                _CoinJarAPI.AddCoin(new Penny());
-                return Ok($"{nameof(Penny)} was added to your coin jar.");
+                _CoinJarAPI.AddCoin(coin);
+                return Ok($"A {coinRequest.CoinType.GetDescription()} was added to your coin jar.");
             }
 
             return BadRequest("Only US coins are accepted.");
         }
 
+        private Coin CastCoinTypeToCoin(CoinType coinType)
+        {
+            switch (coinType)
+            {
+                case CoinType.Penny:
+                    return new Penny();
+                case CoinType.Nickel:
+                    return new Nickel();
+                case CoinType.Dime:
+                    return new Dime();
+                case CoinType.Quarter:
+                    return new Quarter();
+                case CoinType.Half:
+                    return new Half();
+                default:
+                    return null;
+            }
+            
+        }
     }
 }
