@@ -1,0 +1,48 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29709.97
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoinJarAPI.Web", "Web\CoinJarAPI.Web\CoinJarAPI.Web.csproj", "{A49D7B09-BD31-460D-98A4-49B4C7921A01}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{75BFBBA7-3672-4A15-A057-F5B473ACF509}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libraries", "Libraries", "{CECCBDF4-5D78-4E4F-9F3D-4070F57172BC}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoinJarAPI.BusinessLayer", "Libraries\CoinJarAPI.BusinessLayer\CoinJarAPI.BusinessLayer.csproj", "{3D287278-7C3B-4C62-B3DD-E7249B7ADE5B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{7A369D45-C918-4BC2-99A0-2D96E7F9BC31}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoinJarAPI.UnitTests", "Tests\CoinJarAPI.UnitTests\CoinJarAPI.UnitTests.csproj", "{1459DE1B-553C-4824-8C5A-6B0E52BF6DE5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A49D7B09-BD31-460D-98A4-49B4C7921A01}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A49D7B09-BD31-460D-98A4-49B4C7921A01}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A49D7B09-BD31-460D-98A4-49B4C7921A01}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A49D7B09-BD31-460D-98A4-49B4C7921A01}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3D287278-7C3B-4C62-B3DD-E7249B7ADE5B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D287278-7C3B-4C62-B3DD-E7249B7ADE5B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3D287278-7C3B-4C62-B3DD-E7249B7ADE5B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3D287278-7C3B-4C62-B3DD-E7249B7ADE5B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1459DE1B-553C-4824-8C5A-6B0E52BF6DE5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1459DE1B-553C-4824-8C5A-6B0E52BF6DE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1459DE1B-553C-4824-8C5A-6B0E52BF6DE5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1459DE1B-553C-4824-8C5A-6B0E52BF6DE5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{A49D7B09-BD31-460D-98A4-49B4C7921A01} = {75BFBBA7-3672-4A15-A057-F5B473ACF509}
+		{3D287278-7C3B-4C62-B3DD-E7249B7ADE5B} = {CECCBDF4-5D78-4E4F-9F3D-4070F57172BC}
+		{1459DE1B-553C-4824-8C5A-6B0E52BF6DE5} = {7A369D45-C918-4BC2-99A0-2D96E7F9BC31}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7E1C5611-DBAC-4EDF-A7E0-31D82B7C9EA9}
+	EndGlobalSection
+EndGlobal
