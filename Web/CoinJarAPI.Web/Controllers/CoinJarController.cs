@@ -24,6 +24,10 @@ namespace CoinJarAPI.Web.Controllers
             return Ok(string.Format("{0:C}", _CoinJarAPI.GetTotalAmount()));
         }
         
+        /// <summary>
+        /// Resets the coin jar by setting total amount and volume to zero.
+        /// </summary>
+        /// <returns></returns>
         [HttpPut("reset")]
         public IActionResult Reset()
         {
@@ -31,6 +35,11 @@ namespace CoinJarAPI.Web.Controllers
             return Ok("Your coin jar has been emptied.");
         }
 
+        /// <summary>
+        /// Adds a coin to the jar.
+        /// </summary>
+        /// <param name="coin"></param>
+        /// <returns></returns>
         [HttpPost("add/{coin}")]
         public IActionResult AddCoin(string coin)
         {

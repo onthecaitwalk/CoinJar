@@ -4,7 +4,7 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://localhost:50699/",
+      "applicationUrl": "http://localhost:50699",
       "sslPort": 44323
     }
   },
@@ -19,7 +19,7 @@
     "CoinJarAPI.Web": {
       "commandName": "Project",
       "launchBrowser": true,
-      "applicationUrl": "https://localhost:44323/",
+      "applicationUrl": "https://localhost:44323",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
