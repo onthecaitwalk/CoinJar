@@ -1,29 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.ComponentModel;
 
 namespace CoinJarAPI.Web.Models
 {
     public enum CoinType
     {
-        [Description("")]
-        None = 0,
-
         [Description("Penny")]
-        Penny = 1,
+        Penny = 0,
 
         [Description("Nickel")]
-        Nickel = 2,
+        Nickel = 1,
 
         [Description("Dime")]
-        Dime = 3,
+        Dime = 2,
 
         [Description("Quarter Dollar")]
-        Quarter = 4,
+        Quarter = 3,
 
         [Description("Half Dollar")]
-        Half = 5,
+        Half = 4,
     }
 }

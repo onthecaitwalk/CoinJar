@@ -1,4 +1,3 @@
-using System;
 using CoinJarAPI.BusinessLayer;
 using CoinJarAPI.BusinessLayer.Extensions;
 using CoinJarAPI.Web.Models;
@@ -11,6 +10,7 @@ namespace CoinJarAPI.Web.Controllers
     public class CoinJarController : ControllerBase
     {
         private readonly ICoinJar _CoinJarAPI;
+
         public CoinJarController(ICoinJar CoinJarAPI)
         {
             _CoinJarAPI = CoinJarAPI;
@@ -19,18 +19,51 @@ namespace CoinJarAPI.Web.Controllers
         /// <summary>
         /// Gets the total amount contained in the coin jar.
         /// </summary>
-        /// <returns>Total amount in coin jar.</returns>
+        /// <remarks>
+        ///  Sample request:
+        ///
+        ///     GET /api/coinjar/total
+        ///
+        /// </remarks>
+        /// <returns>Total $ amount in coin jar.</returns>
         /// <response code="200">Successfully returned the coin jar total amount.</response>
+        /// <response code="500">Coin jar total amount is not available.</response>
         [HttpGet("total")]
         public IActionResult GetTotalAmount()
         {
             return Ok(string.Format("{0:C}", _CoinJarAPI.GetTotalAmount()));
         }
-        
+
+        /// <summary>
+        /// Gets all valid coin types.
+        /// </summary>
+        /// <remarks>
+        ///  Sample request:
+        ///
+        ///     GET /api/coinjar/coin/types
+        ///
+        /// </remarks>
+        /// <returns>All valid coin types.</returns>
+        /// <response code="200">Successfully returned the all valid coin types.</response>
+        /// <response code="500">Coin types are not available.</response>
+        [HttpGet("coin/types")]
+        public IActionResult GetCoinType()
+        {
+            return Ok(CoinTypeResponse.CastCoinTypeResponses());
+        }
+
         /// <summary>
         /// Resets the coin jar by setting total amount and volume to zero.
         /// </summary>
+        /// <remarks>
+        /// Sample request:
+        ///
+        ///     PUT /api/coinjar/reset
+        ///
+        /// </remarks>
         /// <returns></returns>
+        /// <response code="200">Successfully reset the coin jar.</response>
+        /// <response code="500">Coin jar reset is not available.</response>
         [HttpPut("reset")]
         public IActionResult Reset()
         {
@@ -41,39 +74,32 @@ namespace CoinJarAPI.Web.Controllers
         /// <summary>
         /// Adds a coin to the jar.
         /// </summary>
+        /// <remarks>
+        /// Sample request:
+        ///
+        ///     POST /api/coinjar/coin
+        ///     {
+        ///         "coinType": 1
+        ///     }
+        ///
+        /// </remarks>
         /// <param name="coinRequest"></param>
         /// <returns></returns>
-        [HttpPost("add")]
-        public IActionResult AddCoin(AddCoinRequest coinRequest)
+        /// <response code="200">Successfully added the coin to the coin jar.</response>
+        /// <response code="400">Invalid coin type.</response>
+        /// <response code="500">Adding to the coin jar is not available.</response>
+        [HttpPost("coin")]
+        public IActionResult AddCoin(CoinRequest coinRequest)
         {
-            var coin = CastCoinTypeToCoin(coinRequest.CoinType);
-            if (coin != null)
+            coinRequest.Validate(ModelState);
+            if (!ModelState.IsValid)
             {
-                _CoinJarAPI.AddCoin(coin);
-                return Ok($"A {coinRequest.CoinType.GetDescription()} was added to your coin jar.");
+                return BadRequest(ModelState);               
             }
 
-            return BadRequest("Only US coins are accepted.");
-        }
-
-        private Coin CastCoinTypeToCoin(CoinType coinType)
-        {
-            switch (coinType)
-            {
-                case CoinType.Penny:
-                    return new Penny();
-                case CoinType.Nickel:
-                    return new Nickel();
-                case CoinType.Dime:
-                    return new Dime();
-                case CoinType.Quarter:
-                    return new Quarter();
-                case CoinType.Half:
-                    return new Half();
-                default:
-                    return null;
-            }
-            
-        }
+            var coin = CoinRequest.CastToCoin(coinRequest);
+            _CoinJarAPI.AddCoin(coin);
+            return Ok($"A {coinRequest.CoinType.GetDescription()} was added to your coin jar.");
+        }        
     }
 }

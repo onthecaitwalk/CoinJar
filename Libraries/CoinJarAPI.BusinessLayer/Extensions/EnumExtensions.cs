@@ -33,5 +33,20 @@ namespace CoinJarAPI.BusinessLayer.Extensions
 
             return attributes;
         }
+
+        /// <summary>
+        /// Returns a collection of enums of the given type.
+        /// </summary>
+        /// <typeparam name="TEnum"></typeparam>
+        /// <returns></returns>
+        public static IEnumerable<TEnum> GetEnumList<TEnum>() where TEnum : struct, IConvertible
+        {
+            if (!typeof(TEnum).IsEnum)
+            {
+                throw new ArgumentException("T must be an enumerated type");
+            }
+
+            return Enum.GetValues(typeof(TEnum)).Cast<TEnum>();
+        }
     }
 }
