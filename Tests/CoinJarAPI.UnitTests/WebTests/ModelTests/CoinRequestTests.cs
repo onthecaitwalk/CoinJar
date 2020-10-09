@@ -14,7 +14,7 @@ namespace CoinJarAPI.UnitTests.WebTests.ModelTests
         public void CastToCoin_CoinRequestContainsPenny_ReturnsPenny()
         {
             var request = new CoinRequest { CoinType = CoinType.Penny };
-            var result = CoinRequest.CastToCoin(request);
+            var result = request.CastToCoin();
 
             Assert.IsInstanceOf<Penny>(result);
         }
@@ -23,7 +23,7 @@ namespace CoinJarAPI.UnitTests.WebTests.ModelTests
         public void CastToCoin_CoinRequestContainsNickel_ReturnsNickel()
         {
             var request = new CoinRequest { CoinType = CoinType.Nickel };
-            var result = CoinRequest.CastToCoin(request);
+            var result = request.CastToCoin();
 
             Assert.IsInstanceOf<Nickel>(result);
         }
@@ -32,7 +32,7 @@ namespace CoinJarAPI.UnitTests.WebTests.ModelTests
         public void CastToCoin_CoinRequestContainsDime_ReturnsDime()
         {
             var request = new CoinRequest { CoinType = CoinType.Dime };
-            var result = CoinRequest.CastToCoin(request);
+            var result = request.CastToCoin();
 
             Assert.IsInstanceOf<Dime>(result);
         }
@@ -41,7 +41,7 @@ namespace CoinJarAPI.UnitTests.WebTests.ModelTests
         public void CastToCoin_CoinRequestContainsQuarter_ReturnsQuarter()
         {
             var request = new CoinRequest { CoinType = CoinType.Quarter };
-            var result = CoinRequest.CastToCoin(request);
+            var result = request.CastToCoin();
 
             Assert.IsInstanceOf<Quarter>(result);
         }
@@ -50,7 +50,7 @@ namespace CoinJarAPI.UnitTests.WebTests.ModelTests
         public void CastToCoin_CoinRequestContainsHalf_ReturnsHalf()
         {
             var request = new CoinRequest { CoinType = CoinType.Half };
-            var result = CoinRequest.CastToCoin(request);
+            Coin result = request.CastToCoin();
 
             Assert.IsInstanceOf<Half>(result);
         }
@@ -62,7 +62,7 @@ namespace CoinJarAPI.UnitTests.WebTests.ModelTests
 
             Assert.Throws<ArgumentException>(() =>
             {
-                CoinRequest.CastToCoin(request);
+                var result = request.CastToCoin();
             });
         }
 

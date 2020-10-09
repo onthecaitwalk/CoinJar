@@ -1,3 +1,4 @@
+using System;
 using CoinJarAPI.BusinessLayer;
 using CoinJarAPI.BusinessLayer.Extensions;
 using CoinJarAPI.Web.Models;
@@ -97,9 +98,10 @@ namespace CoinJarAPI.Web.Controllers
                 return BadRequest(ModelState);               
             }
 
-            var coin = CoinRequest.CastToCoin(coinRequest);
+            var coin = coinRequest.CastToCoin();
             _CoinJarAPI.AddCoin(coin);
             return Ok($"A {coinRequest.CoinType.GetDescription()} was added to your coin jar.");
-        }        
+        }
+
     }
 }

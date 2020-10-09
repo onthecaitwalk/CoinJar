@@ -18,8 +18,8 @@ namespace CoinJarAPI.Web.Models
             }
         }
 
-        internal static Coin CastToCoin(CoinRequest coinRequest) =>
-            coinRequest.CoinType switch
+        internal Coin CastToCoin() =>
+            CoinType switch
             {
                 CoinType.Penny => new Penny(),
                 CoinType.Nickel => new Nickel(),
