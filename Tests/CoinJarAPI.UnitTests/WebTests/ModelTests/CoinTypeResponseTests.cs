@@ -15,8 +15,8 @@ namespace CoinJarAPI.UnitTests.WebTests.ModelTests
 
             Assert.Multiple(() =>
             {
-                Assert.IsInstanceOf<CoinTypeResponse>(result);
-                Assert.AreEqual(0, result.CoinType);
+                Assert.IsInstanceOf<CoinTypeResponse>(result, "Should return coin type response");
+                Assert.AreEqual(0, result.CoinType, "Should be penny coin type.");
             });
         }
 
@@ -27,8 +27,8 @@ namespace CoinJarAPI.UnitTests.WebTests.ModelTests
 
             Assert.Multiple(() =>
             {
-                Assert.IsInstanceOf<CoinTypeResponse>(result);
-                Assert.AreEqual(1, result.CoinType);
+                Assert.IsInstanceOf<CoinTypeResponse>(result, "Should return coin type response");
+                Assert.AreEqual(1, result.CoinType, "Should be nickel coin type.");
             });
         }
 
@@ -39,8 +39,8 @@ namespace CoinJarAPI.UnitTests.WebTests.ModelTests
 
             Assert.Multiple(() =>
             {
-                Assert.IsInstanceOf<CoinTypeResponse>(result);
-                Assert.AreEqual(2, result.CoinType);
+                Assert.IsInstanceOf<CoinTypeResponse>(result, "Should return coin type response");
+                Assert.AreEqual(2, result.CoinType, "Should be dime coin type.");
             });
         }
 
@@ -52,8 +52,8 @@ namespace CoinJarAPI.UnitTests.WebTests.ModelTests
 
             Assert.Multiple(() =>
             {
-                Assert.IsInstanceOf<CoinTypeResponse>(result);
-                Assert.AreEqual(3, result.CoinType);
+                Assert.IsInstanceOf<CoinTypeResponse>(result, "Should return coin type response");
+                Assert.AreEqual(3, result.CoinType, "Should be quarter coin type.");
             });
         }
 
@@ -65,8 +65,8 @@ namespace CoinJarAPI.UnitTests.WebTests.ModelTests
 
             Assert.Multiple(() =>
             {
-                Assert.IsInstanceOf<CoinTypeResponse>(result);
-                Assert.AreEqual(4, result.CoinType);
+                Assert.IsInstanceOf<CoinTypeResponse>(result, "Should return coin type response");
+                Assert.AreEqual(4, result.CoinType, "Should be half dollar coin type.");
             });
         }
 
@@ -76,7 +76,7 @@ namespace CoinJarAPI.UnitTests.WebTests.ModelTests
             Assert.Throws<NullReferenceException>(() =>
             {
                 CoinTypeResponse.CastCoinTypeResponse((CoinType)6);
-            });
+            }, "Should throw NullReferenceException when invalid coin type.");
         }
 
         [Test]
@@ -91,12 +91,12 @@ namespace CoinJarAPI.UnitTests.WebTests.ModelTests
                 var dime = result.First(r => r.CoinType == 2);
                 var quarter = result.First(r => r.CoinType == 3);
                 var half = result.First(r => r.CoinType == 4);
-                Assert.AreEqual(5, result.Count);
-                Assert.AreEqual("Penny", penny.Description);
-                Assert.AreEqual("Nickel", nickel.Description);
-                Assert.AreEqual("Dime", dime.Description);
-                Assert.AreEqual("Quarter Dollar", quarter.Description);
-                Assert.AreEqual("Half Dollar", half.Description);
+                Assert.AreEqual(5, result.Count, "Should contain all five coin types in response.");
+                Assert.AreEqual("Penny", penny.Description, "Should contain penny.");
+                Assert.AreEqual("Nickel", nickel.Description, "Should contain nickel.");
+                Assert.AreEqual("Dime", dime.Description, "Should contain dime.");
+                Assert.AreEqual("Quarter Dollar", quarter.Description, "Should contain quarter.");
+                Assert.AreEqual("Half Dollar", half.Description, "Should contain half dollar.");
             });
         }
     }

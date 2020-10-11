@@ -26,7 +26,7 @@ namespace CoinJarAPI.UnitTests
             Assert.Throws<InvalidOperationException>(() =>
             {
                 jar.AddCoin(mockCoin.Object);
-            });
+            }, "Should throw InvalidOperationException when coin jar is too full to add coin volume.");
         }
 
         [Test]
@@ -43,7 +43,7 @@ namespace CoinJarAPI.UnitTests
 
             jar.AddCoin(mockCoin.Object);
 
-            Assert.AreEqual(33, cache.TotalVolume);
+            Assert.AreEqual(33, cache.TotalVolume, "Should add coin volume to coin jar total volume.");
         }
 
         [Test]
@@ -60,7 +60,7 @@ namespace CoinJarAPI.UnitTests
 
             jar.AddCoin(mockCoin.Object);
 
-            Assert.AreEqual(42, cache.TotalVolume);
+            Assert.AreEqual(42, cache.TotalVolume, "Should add coin volume to coin jar total volume.");
         }
 
         [Test]
@@ -77,7 +77,7 @@ namespace CoinJarAPI.UnitTests
 
             jar.AddCoin(mockCoin.Object);
 
-            Assert.AreEqual(42, cache.TotalAmount);
+            Assert.AreEqual(42, cache.TotalAmount, "Should add coin amount to coin jar total amount.");
         }
 
         [Test]
@@ -91,7 +91,7 @@ namespace CoinJarAPI.UnitTests
 
             var result = jar.GetTotalAmount();
 
-            Assert.AreEqual(40, result);
+            Assert.AreEqual(40, result, "Should return coin jar total amount.");
         }
 
         [Test]
@@ -108,8 +108,8 @@ namespace CoinJarAPI.UnitTests
 
             Assert.Multiple(() =>
             {
-                Assert.AreEqual(0, cache.TotalAmount);
-                Assert.AreEqual(0, cache.TotalVolume);
+                Assert.AreEqual(0, cache.TotalAmount, "Should set coin jar total amount to zero.");
+                Assert.AreEqual(0, cache.TotalVolume, "Should set coin jar total volume to zero.");
             });
         }
     }

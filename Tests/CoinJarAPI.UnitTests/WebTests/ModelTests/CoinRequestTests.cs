@@ -16,7 +16,7 @@ namespace CoinJarAPI.UnitTests.WebTests.ModelTests
             var request = new CoinRequest { CoinType = CoinType.Penny };
             var result = request.CastToCoin();
 
-            Assert.IsInstanceOf<Penny>(result);
+            Assert.IsInstanceOf<Penny>(result, "Should return penny.");
         }
 
         [Test]
@@ -25,7 +25,7 @@ namespace CoinJarAPI.UnitTests.WebTests.ModelTests
             var request = new CoinRequest { CoinType = CoinType.Nickel };
             var result = request.CastToCoin();
 
-            Assert.IsInstanceOf<Nickel>(result);
+            Assert.IsInstanceOf<Nickel>(result, "Should return nickel.");
         }
 
         [Test]
@@ -34,7 +34,7 @@ namespace CoinJarAPI.UnitTests.WebTests.ModelTests
             var request = new CoinRequest { CoinType = CoinType.Dime };
             var result = request.CastToCoin();
 
-            Assert.IsInstanceOf<Dime>(result);
+            Assert.IsInstanceOf<Dime>(result, "Should return dime.");
         }
 
         [Test]
@@ -43,7 +43,7 @@ namespace CoinJarAPI.UnitTests.WebTests.ModelTests
             var request = new CoinRequest { CoinType = CoinType.Quarter };
             var result = request.CastToCoin();
 
-            Assert.IsInstanceOf<Quarter>(result);
+            Assert.IsInstanceOf<Quarter>(result, "Should return quarter.");
         }
 
         [Test]
@@ -52,7 +52,7 @@ namespace CoinJarAPI.UnitTests.WebTests.ModelTests
             var request = new CoinRequest { CoinType = CoinType.Half };
             Coin result = request.CastToCoin();
 
-            Assert.IsInstanceOf<Half>(result);
+            Assert.IsInstanceOf<Half>(result, "Should return half dollar.");
         }
 
         [Test]
@@ -63,7 +63,7 @@ namespace CoinJarAPI.UnitTests.WebTests.ModelTests
             Assert.Throws<ArgumentException>(() =>
             {
                 var result = request.CastToCoin();
-            });
+            }, "Should throw ArgumentException when invalid coin type.");
         }
 
         [Test]
@@ -83,7 +83,7 @@ namespace CoinJarAPI.UnitTests.WebTests.ModelTests
             request.Validate(modelState);
 
             var error = modelState.FirstOrDefault(e => e.Key == nameof(CoinType));
-            Assert.IsNull(error.Value);
+            Assert.IsNull(error.Value, "Should not add error message if valid coin type.");
         }
 
         [Test]
@@ -102,7 +102,7 @@ namespace CoinJarAPI.UnitTests.WebTests.ModelTests
             {
                 Assert.GreaterOrEqual(modelState.Count, 1);
                 var error = modelState.FirstOrDefault(e => e.Key == nameof(CoinType));
-                Assert.IsNotNull(error.Value);
+                Assert.IsNotNull(error.Value, "Should add error message if invalid coin type.");
             });
         }
     }
